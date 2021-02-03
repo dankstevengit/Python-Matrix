@@ -7,3 +7,6 @@ The first line contains an integer N (2 ≤ N ≤ 100). The second line contains
 
 # Result
 If the credit matrix cannot be filled, "NO" will be displayed. Otherwise, "YES" will be displayed in the first line, and in each of the next N lines, N corresponding elements A[i,j] of the credit matrix will be displayed separated by spaces. If the problem has several solutions, any of them will be displayed.
+
+# Source
+If you would like to see the full explanation check out the source link to the matrix task: https://acm.timus.ru/problem.aspx?space=1&num=1421&locale=en
