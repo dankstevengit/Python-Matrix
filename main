@@ -1,0 +1,69 @@
+def check(d: int) -> int:
+    s = 0
+    for k in range(0, n):
+        if SC[k] > d:
+            if (SC[k] - d) > 100:
+                s += 100
+            else:
+                s += (SC[k] - d)
+    return s
+
+
+YN = "YES"
+a = 0
+r = 0
+n = int(input())
+ans = []
+for i in range(0, n):
+    ans.append([0] * n)
+SR = input().split()  # полученные кредиты предприятием \\ строки
+SC = input().split()  # выданные кредиты банком         \\ столбцы
+for i in range(0, n):
+    SR[i] = int(SR[i])
+    SC[i] = int(SC[i])
+    if SC[i] > n * 100 or SR[i] > n * 100:
+        YN = "NO"
+if sum(SC) != sum(SR):
+    YN = "NO"
+if YN == "YES":
+    for i in range(0, n):
+        a = 0
+        if SR[i] == 0:
+            continue
+        if SR[i] > check(0):
+            YN = "NO"
+            break
+        b = 10010
+        while (a + 1) != b:
+            m = (a + b) // 2
+            r = check(m)
+            if SR[i] <= r:
+                a = m
+            else:
+                b = m
+        r = check(a)
+        for j in range(0, n):
+            if SC[j] > a:
+                if (SC[j] - a) > 100:
+                    ans[i][j] = 100
+                    SC[j] -= 100
+                else:
+                    ans[i][j] = SC[j] - a
+                    SC[j] = a
+        r -= SR[i]
+        j = 0
+        while r > 0:
+            if ans[i][j] > 0 and SC[j] == a:
+                ans[i][j] -= 1
+                SC[j] += 1
+                r -= 1
+            j += 1
+print(YN)
+if YN == "NO":
+    exit(0)
+elif YN == "YES":
+    for i in range(len(ans)):
+        for j in range(len(ans[i])):
+            print(ans[i][j], end=' ')
+        print()
+
